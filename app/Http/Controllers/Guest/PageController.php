@@ -16,6 +16,13 @@ class PageController extends Controller
 
         return view('movies.index', compact('movies'));
     }   
+
+    public function show($id)
+    {
+        $movie = Movie::where('id', $id)->first();
+
+        return view('movies.show', compact('movie'));
+    }
 }
 
     

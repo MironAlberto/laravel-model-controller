@@ -1,3 +1,18 @@
+@php
+    $movieImages = [
+        'padrino.jpg',
+        'via-col-vento.jpg',
+        'psycho.jpeg',
+        'gravity.jpeg',
+        'toy-story.jpg',
+        'pulp-fiction.jpg',
+        'forrest-gump.webp',
+        'guerre-stellari.webp',
+        'et.jpg',
+        'il-silenzio-degli-innocenti.jpg'
+    ]
+@endphp
+
 @extends('layouts.app')
 
 @section('page-title', 'Movies')
@@ -12,7 +27,7 @@
             @foreach ($movies as $index => $movie)
                 <div class="col-4">
                     <div class="card mb-4 text-center">
-                        <img src="{{ Vite::asset('resources/img/movie.jpg') }}" class="card-img-top img" alt="{{ $movie->title }}">
+                        <img src="{{ Vite::asset('resources/img/' . $movieImages[$index % count($movieImages)]) }}" class="img" alt="{{ $movie->title }}">
                         <div class="card-body">
                             <h4 class="card-title fw-bolder">
                                 {{ $movie->title }}
@@ -29,7 +44,7 @@
                             <p class="card-text">
                                 Vote: <strong>{{ $movie->vote }}</strong>
                             </p>
-                            <a href="#" class="btn btn-danger">
+                            <a href="{{ route('show', ['id' => $movie->id]) }}" class="btn btn-danger">
                                 More Details
                             </a>
                         </div>
